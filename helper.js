@@ -32,5 +32,6 @@ const prepareMessageForHashing = ({
 };
 
 module.exports = {
-  prepareDataForHashing
+  prepareDataForHashing,
+  prepareMessageForHashing
 };
