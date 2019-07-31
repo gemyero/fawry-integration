@@ -95,7 +95,10 @@ app.get('/serverCallbackV2', (req, res) => {
 
 app.post('/serverCallbackV2', (req, res) => {
   console.log(req.body);
-  const messageToHash = prepareMessageForHashing(req.body);
+  const messageToHash = prepareMessageForHashing({
+    ...req.body,
+    secureHashKey: '25c89e69999d4cb8b6ba8b43dec3ea25'
+  });
   console.log(messageToHash);
   console.log(computeHashSHA256(messageToHash));
   res.send('in post callback');
