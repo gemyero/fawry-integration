@@ -1,7 +1,7 @@
 const express = require('express');
 const crypto = require('crypto');
 const uniqid = require('uniqid');
-const { prepareDataForHashing } = require('./helper');
+const { prepareDataForHashing, prepareMessageForHashing } = require('./helper');
 
 const computeHashSHA256 = data => crypto
   .createHash('sha256')
@@ -95,6 +95,9 @@ app.get('/serverCallbackV2', (req, res) => {
 
 app.post('/serverCallbackV2', (req, res) => {
   console.log(req.body);
+  const messageToHash = prepareMessageForHashing(req.body);
+  console.log(messageToHash);
+  console.log(computeHashSHA256(messageToHash));
   res.send('in post callback');
 });
 

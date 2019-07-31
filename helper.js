@@ -17,6 +17,20 @@ const prepareDataForHashing = ({
     secureHashKey;
 };
 
+const prepareMessageForHashing = ({
+  fawryRefNumber, merchantRefNum, paymentAmount, 
+  orderAmount, orderStatus, paymentMethod, 
+  paymentRefrenceNumber = '', secureHashKey
+}) => {
+  return fawryRefNumber +
+    merchantRefNum +
+    Number(paymentAmount).toFixed(2) +
+    Number(orderAmount).toFixed(2) +
+    orderStatus + 
+    paymentMethod + 
+    paymentRefrenceNumber + secureHashKey
+};
+
 module.exports = {
   prepareDataForHashing
 };
