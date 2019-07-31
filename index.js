@@ -69,32 +69,34 @@ function run() {
   // 9903 : حدث خطا
 
   // `);
-  }
+}
 
-  const app = express();
+const app = express();
 
-  app.use(express.static('public'));
+app.use(express.static('public'));
+app.use(express.json());
 
-  app.get('/payLink', (req, res) => {
-    const url = run();
-    res.redirect(url);
-  });
+app.get('/payLink', (req, res) => {
+  const url = run();
+  res.redirect(url);
+});
 
-  app.get('/successUrl', (req, res) => {
-    res.send({ chargeResponse: JSON.parse(req.query.chargeResponse) });
-  });
+app.get('/successUrl', (req, res) => {
+  res.send({ chargeResponse: JSON.parse(req.query.chargeResponse) });
+});
 
-  app.get('/failerUrl', (req, res) => {
-    res.send(req.query);
-  });
+app.get('/failerUrl', (req, res) => {
+  res.send(req.query);
+});
 
-  app.get('/serverCallbackV2', (req, res) => {
-    res.send('in get callback');
-  });
+app.get('/serverCallbackV2', (req, res) => {
+  res.send('in get callback');
+});
 
-  app.post('/serverCallbackV2', (req, res) => {
-    res.send('in post callback');
-  });
+app.post('/serverCallbackV2', (req, res) => {
+  console.log(req.body);
+  res.send('in post callback');
+});
 
-  const PORT = process.env.PORT || 4000;
-  app.listen(PORT, () => console.log('server starts...'));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log('server starts...'));
