@@ -13,8 +13,8 @@ function run() {
   const merchantCode = '1tSa6uxz2nSL2tCkXCgN7A==';
   const merchantRefNumber = uniqid.time();
   const customerProfileId = uniqid.time();
-  const successPageUrl = 'http://localhost:4000/successUrl';
-  const failerPageUrl = 'http://localhost:4000/failerUrl';
+  const successPageUrl = process.env.SUCCESS_PAGE_URL || 'http://localhost:4000/successUrl';
+  const failerPageUrl = process.env.FAILER_PAGE_URL || 'http://localhost:4000/failerUrl';
   const items = [
     { productSKU: uniqid.time(), description: 'product 1', price: '50', quantity: '2' },
     { productSKU: uniqid.time(), description: 'product 2', price: '70', quantity: '1' }
@@ -36,7 +36,7 @@ function run() {
   const prodBaseUrl = 'https://www.atfawry.com/ECommercePlugin/FawryPay.jsp';
   const sandboxBaseUrl = 'https://atfawry.fawrystaging.com/ECommercePlugin/FawryPay.jsp';
 
-  const url = `${sandboxBaseUrl}?chargeRequest={"language":"ar-eg","merchantCode":"${merchantCode}","merchantRefNumber":"${merchantRefNumber}","customer":{"name":"Mohamed Gamal","mobile":"01091492532","email":"mohamedgr91@gmail.com", "customerProfileId":"${customerProfileId}"},"order":{"description":"test bill inq", "expiry": "2", "orderItems":${JSON.stringify(items)}},"signature":"${hash}"}&successPageUrl=http://localhost:4000/successUrl&failerPageUrl=http://localhost:4000/failerUrl`;
+  const url = `${sandboxBaseUrl}?chargeRequest={"language":"ar-eg","merchantCode":"${merchantCode}","merchantRefNumber":"${merchantRefNumber}","customer":{"name":"Mohamed Gamal","mobile":"01091492532","email":"mohamedgr91@gmail.com", "customerProfileId":"${customerProfileId}"},"order":{"description":"test bill inq", "expiry": "2", "orderItems":${JSON.stringify(items)}},"signature":"${hash}"}&successPageUrl=${successPageUrl}&failerPageUrl=${failerPageUrl}`;
 
   return url;
   //   console.log(`
