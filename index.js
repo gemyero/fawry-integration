@@ -92,4 +92,5 @@ app.post('/serverCallbackV2', (req, res) => {
   res.send('in post callback');
 });
 
-app.listen(4000, () => console.log('server starts...'));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log('server starts...'));
