@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fawry": "0.0.1",
     "request": "^2.88.0",
     "uniqid": "^5.0.3"
